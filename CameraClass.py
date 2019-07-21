@@ -2,13 +2,13 @@
 import picamera
 
 class CameraClass:
-  #name must have a .jpg file tag
-  def takePic(self, name):
+  #option to use jpeg, png, bmp, gif formats
+  def takePic(self, name, imgFormat):
     with picamera.PiCamera() as camera:
       camera.resolution = (1280,720)
-      camera.capture("/home/pi/Test_Full/" + name + ".jpg")
+      camera.capture("/home/pi/Documents/CubeSats/images/Test_Full/" + name + "." + imgFormat, format=imgFormat)
       camera.resolution = (128,128)
-      camera.capture("/home/pi/Test_Half/" + name + ".jpg")
+      camera.capture("/home/pi/Documents/CubeSats/images/Test_Half/" + name + "." + imgFormat, format=imgFormat)
       
   def resizePic(self, name):
     
