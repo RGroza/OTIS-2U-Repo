@@ -1,13 +1,14 @@
 from xbee_driver import xbee_driver as XBee
+import base64
 
 RPi_XBee = XBee()
 
-RPi_XBee.putc("active ")
+def encodeImg(file):
+    with open(file, "rb") as imageFile:
+        str = base64.b64encode(imageFile.read())
+        return str
 
-i = 0
-while i <= 10:
-    RPi_XBee.putc(str(i))
-    i += 1
+imgFile = open('/home/pi/Documents/CubeSat/images/test.png', 'rb')
+modem.send(imgFile)
 
-#stream = open()
-#modem.send(stream)
+#RPi_XBee.putc(encodeImg('/home/pi/Documents/CubeSat/images/test.png'))

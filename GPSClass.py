@@ -28,10 +28,10 @@ class GPSClass:
             time.sleep(1)
 
     def getLatitude(self):
-        return self.latitude 
+        return str(self.latitude) 
 
-    def getLongitude():
-        reutrn self.longitude 
+    def getLongitude(self):
+        return str(self.longitude) 
 
-    def getTime():
-        return self.time 
+    def getTime(self):
+        return str(self.time) 
