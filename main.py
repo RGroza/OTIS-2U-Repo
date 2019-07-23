@@ -4,6 +4,7 @@ import ProcessClass
 import time
 import xbee_driver as xbee
 import power_system
+import temp_monitor
 #import RPi.GPIO as GPIO
 
 GPS = GPSClass.GPSClass(-1,-1,0)
@@ -25,6 +26,7 @@ while True: #Insert onAB() from IMU class
             GPS.getGPS()
             print (list)
             xbee.send(name)
+            print ("Temperature: " + temp_monitor.measure_temp())
             print ("Latitude: " + GPS.getLatitude())
             print ("Longitude: " + GPS.getLongitude())
             print ("Time: " + GPS.getTime())
