@@ -30,7 +30,7 @@ class xbee_driver:
     #this file should be called on the CubeSat, and is used for sending any file.
     #file is a string file directory of what is being sent.
     def send(self, file):
-        stream = open(file)
+        stream = open(file, 'rb')
         self.modem.send(stream)
 
     #requests a file and saves it in savelocation. This method does not return anything.
