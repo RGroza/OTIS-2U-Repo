@@ -11,7 +11,7 @@ ser = serial.Serial(
     stopbits=serial.STOPBITS_TWO,
     bytesize=serial.EIGHTBITS,
     timeout=1
- )
+)
 
 def getc(size, timeout=1):
     return ser.read(size) or None
@@ -21,5 +21,5 @@ def putc(data, timeout=1):
 
 modem = XMODEM(getc, putc)
 
-stream = open('received', 'wb')
-modem.recv(stream)
+stream = open('/images/test.png', 'rb')
+modem.send(stream)
