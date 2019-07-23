@@ -8,7 +8,7 @@ def encodeImg(file):
         str = base64.b64encode(imageFile.read())
         return str
 
-imgFile = open('/home/pi/Documents/CubeSat/images/test.png', 'rb')
+imgFile = open('/home/pi/Documents/OTIS-2U-Repo/images/test.png', 'rb')
 modem.send(imgFile)
 
 #RPi_XBee.putc(encodeImg('/home/pi/Documents/CubeSat/images/test.png'))
