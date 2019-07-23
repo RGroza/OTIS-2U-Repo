@@ -43,6 +43,10 @@ class xbee_driver:
         stream = open(savelocation, 'wb')
         self.modem.recv(stream)
 
+    def receive(self, savelocation):
+        stream = open(savelocation, 'wb')
+        self.modem.recv(stream)
+
     #used for commands and when the client wants to send data directly rather than as a file.
     #cmd = "get" is reserved for requesting a file.
     def sendcommand(self, cmd):
