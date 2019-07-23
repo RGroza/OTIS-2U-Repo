@@ -10,6 +10,7 @@ GPS = GPSClass.GPSClass(-1,-1,0)
 camera = CameraClass.CameraClass()
 inc = 0
 power = power_system.power_system()
+process = ProcessClass.ProcessClass()
 #GPIO.setmode(GPIO.BCM)
 #GPIO.setup(#insert num, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 #Every ~2 minutes, reset odometer
