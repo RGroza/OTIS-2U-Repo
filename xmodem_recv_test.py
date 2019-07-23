@@ -21,5 +21,5 @@ def putc(data, timeout=1):
 
 modem = XMODEM(getc, putc)
 
-stream = open('/images/test.png', 'wb')
+stream = open('/home/pi/Documents/OTIS-2U-Repo/images/test.png', 'wb')
 modem.recv(stream)
