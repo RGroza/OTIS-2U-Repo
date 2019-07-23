@@ -23,13 +23,13 @@ class ProcessClass:
   def midRowPix(self, name):
     image=Image.open(name)
     count=0
-    #while count<10:
-      #coord=(count,64)
-      #pix=image.getpixel(coord)
-      #if not (pix[1]>100 and pix[0]<100 and pix[2]<50):
-        #os.remove(name)
-        #return False
-      #count+=1
+    while count<10:
+      coord=(count,64)
+      pix=image.getpixel(coord)
+      if not (pix[1]>100 and pix[0]<100 and pix[2]<50):
+        os.remove(name)
+        return False
+      count+=1
     count=58
     while count<70:
       coord=(count,64)
@@ -39,13 +39,13 @@ class ProcessClass:
         return False
       count+=1
     count=117
-    #while count<128:
-      #coord=(count,64)
-      #pix=image.getpixel(coord)
-      #if not (pix[1]>100 and pix[0]<100 and pix[2]<50):
-        #os.remove(name)
-        #return False
-      #count+=1
+    while count<128:
+      coord=(count,64)
+      pix=image.getpixel(coord)
+      if not (pix[1]>100 and pix[0]<100 and pix[2]<50):
+        os.remove(name)
+        return False
+      count+=1
     return True
   
   #runs through and spices the pixels
