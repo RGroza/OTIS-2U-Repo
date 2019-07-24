@@ -71,11 +71,11 @@ class ProcessClass:
   
   #embeded method used in picIdentify
   def calculate(self,oxi,oil):
-    perAllOxi=(float)oxi/16384
-    perAllOil=(float)oil/16384
+    perAllOxi=float(oxi)/16384
+    perAllOil=float(oil)/16384
     oxiOil=oxi+oil
-    perOxi=(float)oxi/oxiOil
-    perOil=(float)oil/oxiOil
+    perOxi=float(oxi)/oxiOil
+    perOil=float(oil)/oxiOil
     return (perOxi*100)
   
   
