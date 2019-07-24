@@ -10,12 +10,16 @@ class ProcessClass:
   def middlePix(self, name):
     image=Image.open(name)
     pixel=image.load()
-    pix=pixel[64,64]
-    if pix[1]>100 and pix[0]<100 and pix[2]<50:
-      os.remove(name)
-      return False
-    else:
-      return True
+    j=56
+    k=56
+    while j<72:
+      while k<72:
+        pix=pixel[j,k]
+        if pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30:
+          os.remove(name)
+          return False
+        else:
+          return True
   
   #checks the middle row of pixels
   #should be called after the middlePix method
@@ -71,11 +75,11 @@ class ProcessClass:
   
   #embeded method used in picIdentify
   def calculate(self,oxi,oil):
-    perAllOxi=float(oxi)/16384
-    perAllOil=float(oil)/16384
+    perAllOxi=(float)oxi/16384
+    perAllOil=(float)oil/16384
     oxiOil=oxi+oil
-    perOxi=float(oxi)/oxiOil
-    perOil=float(oil)/oxiOil
+    perOxi=(float)oxi/oxiOil
+    perOil=(float)oil/oxiOil
     return (perOxi*100)
   
   
