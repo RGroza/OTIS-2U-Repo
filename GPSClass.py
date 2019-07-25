@@ -1,4 +1,3 @@
-
 import sys
 import time
 import difflib
@@ -19,13 +18,18 @@ class GPSClass:
         pi = pigpio.pi()
         pi.set_mode(RX, pigpio.INPUT)
         pi.bb_serial_read_open(RX, 9600, 8)
-        while 1:
-            (count, data) = pi.bb_serial_read(RX)
-            if count:
-                    self.latitude = la
-                    self.longitude = lo
-                    self.time = t
-            time.sleep(1)
+        (count, data) = pi.bb_serial_read(RX)
+        if count:
+            for line in data.split('\n') :
+                    if line.startswith( '$GPGGA' ):
+                        context = line.strip().split(',')
+                        lat_line = context[2]
+                        lon_line = context[4]
+                        self.latitude = lat_line[0:2] + "." + lat_line[2:4]
+                        self.longitude = lon_line[0:3] + "." + lon_line[3:5]
+                        self.time = context[1]
+        pi.bb_serial_read_close(RX)
+        pi.stop()
 
     def getLatitude(self):
         return str(self.latitude) 
