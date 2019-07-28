@@ -18,21 +18,17 @@ class XBee:
 
     def rec_file(self, filepath): #filepath as string
         stream = open(filepath, 'ab')
-        eot_counter = 0
         received = False
 
         while True:
             print('receiving')
             rec = self.ser.read()
             print(rec)
-            if rec == '' and received == True:
-                eot_counter += 1
-            elif not rec == '':
+            if rec == b'' and received == True:
+                break
+            elif not rec == b'':
                 received = True
                 stream.write(rec)
-            if eot_counter > 0:
-                eot_counter = 0
-                break
 
     def send_cmd(self, command):
         self.ser.write(command)
