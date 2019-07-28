@@ -1,5 +1,6 @@
 import serial
 from time import sleep
+import os
 
 class XBee:
     def __init__(self, serial_port, baud): #serial port as string, baud rate as int
@@ -15,18 +16,24 @@ class XBee:
     def send_file(self, filepath): #filepath as string
         stream = open(filepath, 'rb')
         data = stream.read()
+
+        fileSize = os.path.getsize(filepath)
+        self.ser.write(str(fileSize).encode())
+        print(str(fileSize).encode())
+        sleep(2)
+
         self.ser.write(data)
-        self.ser.write(b'')
 
     def rec_file(self, filepath): #filepath as string
         stream = open(filepath, 'wb')
         received = False
 
         print('Idle...')
-        while True:
 
+        print(self.ser.read(4))
+
+        while True:
             rec = self.ser.read()
-            #print(rec)
             if rec == b'' and received == True:
                 print("Done")
                 break
