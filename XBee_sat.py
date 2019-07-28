@@ -1,11 +1,11 @@
-from XBee_class import XBee
+from xbee import XBee
 from PIL import Image
 from time import sleep
 
 def convert_to_jpg(file): # filepath as string
     im = Image.open(file)
     jpg_im = im.convert('RGB')
-    jpg_im.save(file[0:file.index('.')] + '.jpg', quality=95)
+    jpg_im.save(file[0:file.index('.')] + '.jpg', quality=80)
 
 # sends the first n files after the previously sent file
 def sendFileBatch(mydir, filesNum, prevFileType='.png', convertedFileType='.jpg'): # n -> number of images as int, fileType as string '.jpg'
