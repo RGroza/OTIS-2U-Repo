@@ -1,4 +1,5 @@
 from XBee_class import XBee
+from PIL import Image
 from time import sleep
 
 def convert_to_JPG(file): # filepath as string
