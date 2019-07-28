@@ -18,7 +18,7 @@ class XBee:
         self.ser.write(data)
 
     def rec_file(self, filepath): #filepath as string
-        stream = open(filepath, 'wb')
+        stream = open(filepath, 'ab')
         eot_counter = 0
         received = False
 

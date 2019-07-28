@@ -1,4 +1,4 @@
-from xbee import XBee
+from XBee_class import XBee
 from PIL import Image
 from time import sleep
 
@@ -10,10 +10,10 @@ def convert_to_jpg(file): # filepath as string
 # sends the first n files after the previously sent file
 def sendFileBatch(mydir, filesNum, prevFileType='.png', convertedFileType='.jpg'): # n -> number of images as int, fileType as string '.jpg'
     for n in range(filesNum):
-        #print("Converting image " + str(n))
-        #convert_to_jpg(mydir + str(n) + prevFileType)
-        #print("Image converted, sending image")
-        satellite.send_file(mydir + 'test' + str(n) + convertedFileType)
+        print("Converting image " + str(n))
+        convert_to_jpg(mydir + str(n) + prevFileType)
+        print("Image converted, sending image")
+        satellite.send_file(mydir + str(n) + convertedFileType)
         print("Image sent!")
         sleep(2)
 

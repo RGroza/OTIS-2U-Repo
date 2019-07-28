@@ -1,10 +1,10 @@
-from xbee import XBee
+from XBee_class import XBee
 
 def receiveFiles(mydir, fileType='.jpg'):
     currentFile = 0
     while True:
-        ground_station.rec_file(mydir + 'test' + str(currentFile) + fileType)
-        print("Image " + 'test' + str(currentFile) + " received!")
+        ground_station.rec_file(mydir + str(currentFile) + fileType)
+        print("Image " + str(currentFile) + " received!")
         currentFile += 1
 
 ground_station = XBee('COM9', 4800)

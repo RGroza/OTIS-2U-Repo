@@ -18,7 +18,7 @@ class XBee:
         self.ser.write(data)
 
     def rec_file(self, filepath): #filepath as string
-        stream = open(filepath, 'ab')
+        stream = open(filepath, 'wb')
         received = False
 
         print('Idle...')
@@ -36,7 +36,6 @@ class XBee:
                     print(rec)
                 received = True
                 stream.write(rec)
-                sleep(0.5)
 
     def send_cmd(self, command):
         self.ser.write(command)
