@@ -8,8 +8,8 @@ def convert_to_JPG(file): # filepath as string
     bg.save(file[0:file.index('.')] + '.jpg', quality=50)
 
 # sends the first n files after the previously sent file
-def sendFileBatch(mydir, n, prevFileType='.png', convertedFileType='.jpg'): # n -> number of images as int, fileType as string '.jpg'
-    for in range(n):
+def sendFileBatch(mydir, filesNum, prevFileType='.png', convertedFileType='.jpg'): # n -> number of images as int, fileType as string '.jpg'
+    for n in range(filesNum):
         print("Converting image " + str(n))
         convert_to_JPG(str(n) + prevFileType)
         print("Image converted, sending image")
