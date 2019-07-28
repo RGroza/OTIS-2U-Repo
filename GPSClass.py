@@ -20,7 +20,8 @@ class GPSClass:
         pi.bb_serial_read_open(RX, 9600, 8)
         (count, data) = pi.bb_serial_read(RX)
         if count:
-            for line in data.split('\n') :
+            new_data = str(data, 'utf-8')
+            for line in new_data.split('\n') :
                     if line.startswith( '$GPGGA' ):
                         context = line.strip().split(',')
                         lat_line = context[2]
