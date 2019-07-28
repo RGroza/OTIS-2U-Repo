@@ -1,6 +1,7 @@
 from XBee_class import XBee
 from PIL import Image
 from time import sleep
+import os
 
 def convert_to_jpg(file): # filepath as string
     im = Image.open(file)
@@ -13,9 +14,10 @@ def sendFileBatch(mydir, filesNum, prevFileType='.png', convertedFileType='.jpg'
         print("Converting image " + str(n))
         convert_to_jpg(mydir + str(n) + prevFileType)
         print("Image converted, sending image")
+        fileSize = os.path.getsize(mydir + str(n) + convertedFileType)
+        print(str(fileSize).encode())
         satellite.send_file(mydir + str(n) + convertedFileType)
         print("Image sent!")
-        sleep(2)
 
 satellite = XBee('/dev/ttyUSB0', 4800)
 

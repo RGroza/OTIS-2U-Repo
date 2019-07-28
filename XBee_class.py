@@ -16,6 +16,7 @@ class XBee:
         stream = open(filepath, 'rb')
         data = stream.read()
         self.ser.write(data)
+        self.ser.write(b'')
 
     def rec_file(self, filepath): #filepath as string
         stream = open(filepath, 'wb')
