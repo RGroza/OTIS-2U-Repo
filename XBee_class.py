@@ -21,12 +21,17 @@ class XBee:
         received = False
 
         while True:
-            print('receiving')
+            print('Idle...')
             rec = self.ser.read()
-            print(rec)
+            #print(rec)
             if rec == b'' and received == True:
+                print("Done")
                 break
             elif not rec == b'':
+                if received == False:
+                    print("Receiving")
+                else:
+                    print("*"),
                 received = True
                 stream.write(rec)
 
