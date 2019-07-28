@@ -20,8 +20,9 @@ class XBee:
         stream = open(filepath, 'ab')
         received = False
 
+        print('Idle...')
         while True:
-            print('Idle...')
+
             rec = self.ser.read()
             #print(rec)
             if rec == b'' and received == True:
@@ -31,7 +32,7 @@ class XBee:
                 if received == False:
                     print("Receiving")
                 else:
-                    print("*"),
+                    print(rec)
                 received = True
                 stream.write(rec)
 
