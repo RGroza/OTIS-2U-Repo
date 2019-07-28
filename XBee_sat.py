@@ -15,7 +15,7 @@ def sendFileBatch(mydir, filesNum, prevFileType='.png', convertedFileType='.jpg'
         print("Image converted, sending image")
         satellite.send_file(mydir + str(n) + convertedFileType)
         print("Image sent!")
-        sleep(0.1)
+        sleep(2)
 
 satellite = XBee('/dev/ttyUSB0', 9600)
 

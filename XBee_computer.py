@@ -9,4 +9,4 @@ def receiveFiles(mydir, fileType='.jpg'):
 
 ground_station = XBee('COM9', 4800)
 
-receiveFiles('C:/Work/BWSI/CubeSats/images/')
+receiveFiles('C:/Work/BWSI/CubeSats/sat_images/')
