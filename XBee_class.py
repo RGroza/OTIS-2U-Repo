@@ -1,6 +1,6 @@
 import serial
 
-class xbee:
+class XBee:
     def __init__(self, serial_port, baud): #serial port as string, baud rate as int
         self.ser = serial.Serial(
             port=serial_port,
