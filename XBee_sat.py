@@ -5,7 +5,7 @@ from time import sleep
 def convert_to_jpg(file): # filepath as string
     im = Image.open(file)
     jpg_im = im.convert('RGB')
-    jpg_im.save(file[0:file.index('.')] + '.jpg', quality=80)
+    jpg_im.save(file[0:file.index('.')] + '.jpg', quality=95)
 
 # sends the first n files after the previously sent file
 def sendFileBatch(mydir, filesNum, prevFileType='.png', convertedFileType='.jpg'): # n -> number of images as int, fileType as string '.jpg'
@@ -17,8 +17,8 @@ def sendFileBatch(mydir, filesNum, prevFileType='.png', convertedFileType='.jpg'
         print("Image sent!")
         sleep(2)
 
-satellite = XBee('/dev/ttyUSB0', 9600)
+satellite = XBee('/dev/ttyUSB0', 4800)
 
-sendFileBatch('/home/pi/Documents/OTIS-2U-Repo/images/', 4)
+sendFileBatch('/home/pi/Documents/OTIS-2U-Repo/images/', 1)
 
 print("Files sent!")

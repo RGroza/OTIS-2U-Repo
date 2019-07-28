@@ -1,4 +1,5 @@
 import serial
+from time import sleep
 
 class XBee:
     def __init__(self, serial_port, baud): #serial port as string, baud rate as int
@@ -17,7 +18,7 @@ class XBee:
         self.ser.write(data)
 
     def rec_file(self, filepath): #filepath as string
-        stream = open(filepath, 'ab')
+        stream = open(filepath, 'wb')
         eot_counter = 0
         received = False
 
