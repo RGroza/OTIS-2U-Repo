@@ -18,7 +18,7 @@ class XBee:
         data = stream.read()
 
         fileSize = os.path.getsize(filepath)
-        fileSize.to_bytes(4, byteorder="little", signed=True)
+        fileSize.to_bytes(2, byteorder="little", signed=False)
         print(fileSize)
         sleep(2)
 
@@ -35,15 +35,13 @@ class XBee:
 
         while True:
             rec = self.ser.read()
-            if rec == b'' and receivedBytes > 0:
+            if receivedBytes >= 2:
                 print("Done")
                 break
             elif not rec == b'':
                 receivedBytes += 1
-                
                 print(rec)
-                
-                fileSize = fileSize * 256 + int(rec)
+                fileSize = fileSize * 256 + int.from_bytes(rec, byteorder="little")
 
         print(fileSize)
         print("Reading File")
