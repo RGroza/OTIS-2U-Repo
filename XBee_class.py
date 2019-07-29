@@ -22,8 +22,8 @@ class XBee:
         fileSize = os.path.getsize(filepath)
         self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
-        sleep(0.5)
-
+        
+        self.wait_file_sync()
         self.ser.write(data)
         # sleep(2)
 
@@ -74,6 +74,8 @@ class XBee:
         
         iniFileSize = fileSize
 
+        self.start_file_sync()
+        
         while fileSize > 0:
             rec = self.ser.read()
             if rec == b'' and received == True:
