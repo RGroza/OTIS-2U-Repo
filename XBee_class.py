@@ -21,7 +21,7 @@ class XBee:
         self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
-        sleep(0.5)
+        sleep(2)
 
         self.ser.write(data)
 
