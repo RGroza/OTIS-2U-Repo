@@ -18,8 +18,8 @@ class XBee:
         data = stream.read()
 
         fileSize = os.path.getsize(filepath)
-        self.ser.write(fileSize.to_bytes(2, byteorder="little", signed=False))
-        print(fileSize.to_bytes(2, byteorder="little", signed=False))
+        self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
+        print(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
         sleep(2)
 
