@@ -14,6 +14,8 @@ class XBee:
          )
 
     def send_file(self, filepath): #filepath as string
+        self.wait_file_sync()
+
         stream = open(filepath, 'rb')
         data = stream.read()
 
@@ -30,7 +32,23 @@ class XBee:
         #     fileSize = self.ser.out_waiting
         #     self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
 
+    def wait_file_sync(self):
+        print('Idle...')
+
+        receivedByte = False
+
+        while True:
+            rec = self.ser.read()
+            if receivedByte == True:
+                break
+            elif not rec == b'':
+                receivedByte = True
+
+    def start_file_sync(self):
+        self.ser.write(b'x')
+
     def rec_file(self, filepath): #filepath as string
+        self.start_file_sync()
         print('Idle...')
 
         fileSize = 0

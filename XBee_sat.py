@@ -9,6 +9,7 @@ def convert_to_jpg(file): # filepath as string
 
 # sends the first n files after the previously sent file
 def sendFileBatch(mydir, filesNum, prevType='.png', convType='.jpg'): # n -> number of images as int, fileType as string '.jpg'
+    satellite.start_file_sync()
     for n in range(filesNum):
         print("Converting image " + str(n))
         convert_to_jpg(mydir + str(n) + prevType)
