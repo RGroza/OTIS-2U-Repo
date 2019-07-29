@@ -21,9 +21,15 @@ class XBee:
         self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
-        sleep(2)
 
         self.ser.write(data)
+        sleep(2)
+
+        iniFileSize = fileSize
+
+        while fileSize > 0:
+            fileSize = self.ser.outWaiting()
+            self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
 
     def rec_file(self, filepath): #filepath as string
         print('Idle...')
