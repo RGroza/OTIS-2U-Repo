@@ -10,7 +10,7 @@ class XBee:
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
             bytesize=serial.EIGHTBITS,
-            timeout=1
+            timeout=2
          )
 
     def send_file(self, filepath): #filepath as string
@@ -19,17 +19,16 @@ class XBee:
 
         fileSize = os.path.getsize(filepath)
         self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
-        print(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
 
         self.ser.write(data)
         sleep(2)
 
-        iniFileSize = fileSize
+        # iniFileSize = fileSize
 
-        while fileSize > 0:
-            fileSize = self.ser.out_waiting
-            self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
+        # while fileSize > 0:
+        #     fileSize = self.ser.out_waiting
+        #     self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
 
     def rec_file(self, filepath): #filepath as string
         print('Idle...')
