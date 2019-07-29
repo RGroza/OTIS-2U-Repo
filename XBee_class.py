@@ -10,7 +10,7 @@ class XBee:
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
             bytesize=serial.EIGHTBITS,
-            timeout=2
+            timeout=5
          )
 
     def send_file(self, filepath): #filepath as string
@@ -22,9 +22,10 @@ class XBee:
         fileSize = os.path.getsize(filepath)
         self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
+        sleep(0.5)
 
         self.ser.write(data)
-        sleep(2)
+        # sleep(2)
 
         # iniFileSize = fileSize
 
@@ -76,7 +77,7 @@ class XBee:
         while fileSize > 0:
             rec = self.ser.read()
             if rec == b'' and received == True:
-                print("Oops!")
+                print(" Oops!")
                 break
             elif not rec == b'':
                 fileSize -= 1
