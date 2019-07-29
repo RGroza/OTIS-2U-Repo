@@ -41,25 +41,20 @@ class XBee:
                 break
             elif not rec == b'':
                 receivedBytes += 1
-                print(rec)
                 fileSize = fileSize * 256 + int.from_bytes(rec, byteorder="little")
 
-        print(fileSize)
-        print("Reading File")
-        sleep(2)
+        print("Reading file..." + str(fileSize) + " bytes")
 
-        while True:
+        while fileSize > 0:
             rec = self.ser.read()
             if rec == b'' and received == True:
-                print("Done")
+                print("Oops!")
                 break
             elif not rec == b'':
-                if received == False:
-                    print("Receiving")
-                else:
-                    print(rec)
+                fileSize -= 1
                 received = True
                 stream.write(rec)
+        print("Done!")
 
     def send_cmd(self, command):
         self.ser.write(command)
