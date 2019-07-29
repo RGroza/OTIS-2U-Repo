@@ -66,11 +66,11 @@ class XBee:
                 fileSize = fileSize * 256 + int.from_bytes(rec, byteorder="little")
             elif rec == b'' and time.time() - beginTime > 5:
                 print("No data found!")
-                return
+                return False
 
         if fileSize == 0:
             print("No file received! Exiting...")
-            return
+            return False
 
         stream = open(filepath, 'wb')
         received = False
@@ -92,6 +92,8 @@ class XBee:
                 self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
                 stream.write(rec)
         print(" Done!")
+
+        return True
 
     def update_progress(self, progress):
         print('\r[{0}] {1}%'.format('#'*int(progress/10), progress), end="", flush=True)
