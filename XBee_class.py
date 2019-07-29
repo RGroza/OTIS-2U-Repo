@@ -28,7 +28,7 @@ class XBee:
         iniFileSize = fileSize
 
         while fileSize > 0:
-            fileSize = self.ser.outWaiting()
+            fileSize = self.ser.out_waiting()
             self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
 
     def rec_file(self, filepath): #filepath as string
