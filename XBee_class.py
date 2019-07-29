@@ -21,29 +21,34 @@ class XBee:
         self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
-        sleep(2)
+        sleep(0.5)
 
         self.ser.write(data)
 
     def rec_file(self, filepath): #filepath as string
-        stream = open(filepath, 'wb')
-        received = False
-        receivedBytes = 0
-
         print('Idle...')
 
         fileSize = 0
+        receivedBytes = 0
 
         while True:
             rec = self.ser.read()
-            if receivedBytes >= 2:
-                print("Done")
+            if receivedBytes >= 2: # or rec == b''
                 break
             elif not rec == b'':
                 receivedBytes += 1
                 fileSize = fileSize * 256 + int.from_bytes(rec, byteorder="little")
 
-        print("Reading file..." + str(fileSize) + " bytes")
+        if fileSize == 0:
+            print("No file received! Exiting...")
+            return
+
+        stream = open(filepath, 'wb')
+        received = False
+
+        print("Reading file... " + str(fileSize) + " bytes")
+        
+        iniFileSize = fileSize
 
         while fileSize > 0:
             rec = self.ser.read()
@@ -53,8 +58,12 @@ class XBee:
             elif not rec == b'':
                 fileSize -= 1
                 received = True
+                self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
                 stream.write(rec)
-        print("Done!")
+        print(" Done!")
+
+    def update_progress(self, progress):
+        print('\r[{0}] {1}%'.format('#'*int(progress/10), progress), end="", flush=True)
 
     def send_cmd(self, command):
         self.ser.write(command)

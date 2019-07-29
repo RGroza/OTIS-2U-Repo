@@ -18,6 +18,6 @@ def sendFileBatch(mydir, filesNum, prevType='.png', convType='.jpg'): # n -> num
 
 satellite = XBee('/dev/ttyUSB0', 4800)
 
-sendFileBatch('/home/pi/Documents/OTIS-2U-Repo/images/', 1)
+sendFileBatch('/home/pi/Documents/OTIS-2U-Repo/images/', 5)
 
 print("Files sent!")
