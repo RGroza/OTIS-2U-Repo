@@ -22,11 +22,6 @@ GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 #used for deboduncing the GPIO input
 lastValue = GPIO.input(5)
 while True: 
-   if GPIO.input(5) is not lastValue:
-      lastValue = GPIO.input(5)
-      counter+=1
-      #prints out the amount of distance OTIS has travelled by calculating the circumference of the rotations
-      print ("Distance travelled: " + (counter * (0.055 * Math.pi)))
    #Determines if OTIS is on the leg with the pans to take pictures
    while imu.getDirection()=="N":
       inc=0
@@ -50,8 +45,13 @@ while True:
                print ("Latitude: " + GPS.getLatitude())
                print ("Longitude: " + GPS.getLongitude())
                print ("Time: " + GPS.getTime())
+               if GPIO.input(5) is not lastValue:
+                  lastValue = GPIO.input(5)
+                  counter+=1
+                  #prints out the amount of distance OTIS has travelled by calculating the circumference of the rotations
+                  print ("Distance travelled: " + (counter * (0.055 * Math.pi)))
 
-      #Deliveers telemtry data
+      #Deliveers telemetry data
       print ("Battery charge: " + str(power.getBattPercent()))
       print ("Battery Voltage: " + str(power.getBattV()))
       print ("Solar Panel Voltage: " + str(power.getPanelXPlusV() + power.getPanelXMinusV() + power.getPanelYPlusV() + power.getPanelYMinusV()))
