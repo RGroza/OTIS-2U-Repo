@@ -1,5 +1,6 @@
 import serial
 from time import sleep
+import time
 import os
 
 class XBee:
@@ -55,6 +56,7 @@ class XBee:
         fileSize = 0
         receivedBytes = 0
 
+        beginTime = time.time()
         while True:
             rec = self.ser.read()
             if receivedBytes >= 2: # or rec == b''
@@ -62,6 +64,9 @@ class XBee:
             elif not rec == b'':
                 receivedBytes += 1
                 fileSize = fileSize * 256 + int.from_bytes(rec, byteorder="little")
+            elif rec == b'' and time.time() - beginTime > 5:
+                print("No data found!")
+                return
 
         if fileSize == 0:
             print("No file received! Exiting...")
