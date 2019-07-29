@@ -41,10 +41,25 @@ while True:
                print process.determineEffectiveness(list)
                #Sends image to ground station
                xbee.send(name)
-               print ("Temperature: " + temp_monitor.measure_temp())
-               print ("Latitude: " + GPS.getLatitude())
-               print ("Longitude: " + GPS.getLongitude())
-               print ("Time: " + GPS.getTime())
+               telemetry = open("telemetry0.txt","a")
+               temp = "Temperature: " + temp_monitor.measure_temp()
+               lat = "Latitude: " + GPS.getLatitude()
+               lon = "Longitude: " + GPS.getLongitude()
+               time = "Time: " + GPS.getTime()
+               buffer = "----------------------------"
+               batt_charge = "Battery charge: " + str(power.getBattPercent())
+               batt_voltage = "Battery Voltage: " + str(power.getBattV())
+               sol_voltage = "Solar Panel Voltage: " + str(power.getPanelXPlusV() + power.getPanelXMinusV() + power.getPanelYPlusV() + power.getPanelYMinusV())
+               telemetry.write(temp)
+               telemetry.write(lat)
+               telemetry.write(lon)
+               telemetry.write(time)
+               telemetry.write(batt_charge)
+               telemetry.write(batt_voltage)
+               telemetry.write(sol_voltage)
+               telemetry.write(buffer)
+               telemtry.readlines()
+               
                if GPIO.input(5) is not lastValue:
                   lastValue = GPIO.input(5)
                   counter+=1
@@ -52,9 +67,6 @@ while True:
                   print ("Distance travelled: " + (counter * (0.055 * Math.pi)))
 
       #Deliveers telemetry data
-      print ("Battery charge: " + str(power.getBattPercent()))
-      print ("Battery Voltage: " + str(power.getBattV()))
-      print ("Solar Panel Voltage: " + str(power.getPanelXPlusV() + power.getPanelXMinusV() + power.getPanelYPlusV() + power.getPanelYMinusV()))
       time.sleep(0.30)
       inc+=1
    #Calibration

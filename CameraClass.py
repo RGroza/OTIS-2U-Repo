@@ -13,11 +13,11 @@ class CameraClass:
       g = camera.awb_gains
       camera.awb_mode = 'off'
       camera.awb_gains = g
-      #camera.resolution = (1280,720)
-      #camera.capture("/home/pi/CubeSats/" + str(name) + ".png")
+      camera.resolution = (1024,1024)
+      camera.capture("/home/pi/CubeSats/High" + str(name) + ".png")
       camera.resolution = (128,128)
-      camera.capture("/home/pi/CubeSats/" + str(name) + ".png")
-    return "/home/pi/CubeSats/" + str(name) + ".png"
+      camera.capture("/home/pi/CubeSats/Low" + str(name) + ".png")
+    return "/home/pi/CubeSats/High" + str(name) + ".png"
   
   def calTakePic(self, name):
     with picamera.PiCamera() as camera:
@@ -28,9 +28,7 @@ class CameraClass:
       g = camera.awb_gains
       camera.awb_mode = 'off'
       camera.awb_gains = g
-      #camera.resolution = (1280,720)
-      #camera.capture("/home/pi/Calibrate/" + str(name) + ".png")
-      camera.resolution = (128,128)
+      camera.resolution = (1024,1024)
       camera.capture("/home/pi/Calibrate/" + str(name) + ".png")
     return "/home/pi/Calibrate/" + str(name) + ".png"
   #def resizePic(self, name):
