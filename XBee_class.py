@@ -19,6 +19,7 @@ class XBee:
 
         fileSize = os.path.getsize(filepath)
         self.ser.write(fileSize.to_bytes(2, byteorder="little", signed=False))
+        print(fileSize.to_bytes(2, byteorder="little", signed=False))
         print(fileSize)
         sleep(2)
 
