@@ -10,7 +10,7 @@ class XBee:
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
             bytesize=serial.EIGHTBITS,
-            timeout=5
+            timeout=1
          )
 
     def send_file(self, filepath): #filepath as string
@@ -22,7 +22,7 @@ class XBee:
         fileSize = os.path.getsize(filepath)
         self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
         print(fileSize)
-        
+
         self.wait_file_sync()
         self.ser.write(data)
         # sleep(2)
