@@ -14,26 +14,6 @@ class XBee:
             timeout=1
          )
 
-    def send_file(self, filepath): #filepath as string
-        self.wait_file_sync()
-
-        stream = open(filepath, 'rb')
-        data = stream.read()
-
-        fileSize = os.path.getsize(filepath)
-        self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
-        print(fileSize)
-
-        self.wait_file_sync()
-        self.ser.write(data)
-        # sleep(2)
-
-        # iniFileSize = fileSize
-
-        # while fileSize > 0:
-        #     fileSize = self.ser.out_waiting
-        #     self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
-
     def wait_file_sync(self):
         print('Idle...')
 
@@ -49,7 +29,33 @@ class XBee:
     def start_file_sync(self):
         self.ser.write(b'x')
 
-    def rec_file(self, filepath): #filepath as string
+    def send_file(self, fileDir, fileName):
+        stream = open(fileDir + fileName, 'rb')
+        data = stream.read()
+
+        fileSize = os.path.getsize(fileDir + fileName)
+        self.wait_file_sync()
+        self.ser.write(fileSize.to_bytes(2, byteorder="big", signed=False))
+        print(fileSize)
+
+        fileNameLen = len(fileName)
+        self.wait_file_sync()
+        self.ser.write(fileNameLen.to_bytes(1, byteorder="big", signed=False))
+
+        self.wait_file_sync()
+        self.ser.write(fileName)
+
+        self.wait_file_sync()
+        self.ser.write(data)
+        # sleep(2)
+
+        # iniFileSize = fileSize
+
+        # while fileSize > 0:
+        #     fileSize = self.ser.out_waiting
+        #     self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
+
+    def rec_file(self, fileDir, batchNum):
         self.start_file_sync()
         print('Idle...')
 
@@ -72,10 +78,52 @@ class XBee:
             print("No file received! Exiting...")
             return False
 
-        stream = open(filepath, 'wb')
+        fileNameLen = 0
+
+        self.start_file_sync()
+
+        beginTime = time.time()
+        while True:
+            rec = self.ser.read()
+            if receivedBytes >= 1: # or rec == b''
+                break
+            elif not rec == b'':
+                receivedBytes += 1
+                fileNameLen = fileNameLen * 256 + int.from_bytes(rec, byteorder="little")
+            elif rec == b'' and time.time() - beginTime > 5:
+                print("No data found!")
+                return False
+
+        if fileNameLen == 0:
+            print("No file received! Exiting...")
+            return False
+
+        fileName = ""
+
+        self.start_file_sync()
+
+        beginTime = time.time()
+        while True:
+            rec = self.ser.read()
+            if receivedBytes >= fileNameLen: # or rec == b''
+                break
+            elif not rec == b'':
+                receivedBytes += 1
+                fileName += rec
+            elif rec == b'' and time.time() - beginTime > 5:
+                print("No data found!")
+                return False
+
+        if len(fileName) != fileNameLen:
+            print("No file received! Exiting...")
+            return False
+
+        self.start_file_sync()
+
+        stream = open(fileDir + str(batchNum) + "-" fileName, 'wb')
         received = False
 
-        print("Reading file... " + str(fileSize) + " bytes")
+        print("Reading file... (" + fileName + ") " + str(fileSize) + " bytes")
         
         iniFileSize = fileSize
 
