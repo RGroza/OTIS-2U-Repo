@@ -1,6 +1,7 @@
 from XBee_class import XBee
 from PIL import Image
 from time import sleep
+import os
 from os import listdir
 from os.path import isfile, join
 
@@ -29,7 +30,7 @@ def collectFiles(mydir, archivedir):
                         convert_to_jpg(mydir + fileName)
                         print("Archiving file: " + fileName)
                         os.rename(mydir + fileName, archivedir + fileName)
-                        fileName = filename.replace(".png", ".jpg")
+                        fileName = fileName.replace(".png", ".jpg")
                 print("Sending file: " + fileName)
                 satellite.send_file(mydir, fileName)
                 print("Archiving file: " + fileName)
