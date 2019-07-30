@@ -120,7 +120,7 @@ class XBee:
 
         self.start_file_sync()
 
-        stream = open(fileDir + str(batchNum) + "-" fileName, 'wb')
+        stream = open(fileDir + str(batchNum) + "-" + fileName, 'wb')
         received = False
 
         print("Reading file... (" + fileName + ") " + str(fileSize) + " bytes")
@@ -139,7 +139,7 @@ class XBee:
                 received = True
                 self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
                 stream.write(rec)
-        print(" Done!")
+        print("Image " + fileName + " received!")
 
         return True
 

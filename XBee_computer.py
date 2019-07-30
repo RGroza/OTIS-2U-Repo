@@ -9,9 +9,6 @@ def receiveFiles(mydir, fileType='.jpg'):
         fileStatus = True
         while fileStatus:
             fileStatus = ground_station.rec_file(mydir, batchNum)
-            if fileStatus:
-                print("Image " + str(currentFile) + " received!")
-                currentFile += 1
 
 ground_station = XBee('COM9', 4800)
 
