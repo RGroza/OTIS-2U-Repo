@@ -6,7 +6,7 @@ import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
-class PowerSystem():
+class power_system():
     # create the spi bus
     spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
 
@@ -27,11 +27,11 @@ class PowerSystem():
         from adafruit_mcp3xxx.analog_in import AnalogIn'''
 
         # create analog input channels on 5 pins on analog to digital converter (ADC)
-        self.batt = AnalogIn(self.mcp, MCP.P5)
-        self.panelXPlus = AnalogIn(self.mcp, MCP.P0)
-        self.panelXMinus = AnalogIn(self.mcp, MCP.P1)
-        self.panelYPlus = AnalogIn(self.mcp, MCP.P2)
-        self.panelYMinus = AnalogIn(self.mcp, MCP.P3)
+        self.batt = AnalogIn(self.mcp, MCP.P0)
+        self.panelXPlus = AnalogIn(self.mcp, MCP.P1)
+        self.panelXMinus = AnalogIn(self.mcp, MCP.P2)
+        self.panelYPlus = AnalogIn(self.mcp, MCP.P3)
+        self.panelYMinus = AnalogIn(self.mcp, MCP.P4)
 
         #stores the initial voltage read at startup, will be used later for monitoring change in voltage
         self.startV = self.batt.voltage

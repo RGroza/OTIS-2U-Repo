@@ -10,11 +10,11 @@ class ProcessClass:
   def middlePix(self, name):
     image=Image.open(name)
     pixel=image.load()
-    j=507
-    k=507
+    j=56
+    k=56
     count=0
-    while j<518:
-      while k<518:
+    while j<72:
+      while k<72:
         pix=pixel[j,k]
         if pix[0]<200 and pix[0]>100 and pix[1]<255 and pix[1]>100 and pix[2]<160 and pix[2]>50:
           count+=1
@@ -22,7 +22,7 @@ class ProcessClass:
       k=0
       j+=1
     if count<200:
-      os.remove(name)
+      #os.remove(name)
       return False
     else:
       return True
@@ -36,30 +36,33 @@ class ProcessClass:
     count=0
     count1=0
     while count<10:
-      pix=pixel[count,512]
+      pix=pixel[count,64]
       if not (pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30):
         count1+=1
       count+=1
     if count1<6:
-      os.remove(name)
+      #os.remove(name)
       return False
     count1=0
-    count=507
-    while count<517:
-      pix=pixel[count,512]
+    count=56
+    print ("hi1")
+    while count<72:
+      pix=pixel[count,64]
       if pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30:
-        os.remove(name)
+        #os.remove(name)
         return False
       count+=1
-    count=1013
-    while count<1024:
-      pix=pixel[count,512]
+    count=117
+    print ("hi2")
+    while count<128:
+      pix=pixel[count,64]
       if not (pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30):
         count1+=1
       count+=1
     if count1<6:
-      os.remove(name)
+      #os.remove(name)
       return False
+    print ("hi3")
     return True
   
   #runs through and spices the pixels
@@ -72,8 +75,8 @@ class ProcessClass:
     k=0
     oxi=0
     oil=0
-    while j<1024:
-      while k<1024:
+    while j<128:
+      while k<128:
         pix=pixel[j,k]
         if not ((pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30) or (pix[0]>120 and pix[1]>120 and pix[2]>120)):
           if (pix[0]>75 and pix[0]<195 and pix[1]<155 and pix[1]>60 and pix[2]<100 and pix[2]>75):

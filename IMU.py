@@ -12,10 +12,11 @@ class IMU:
 	#enable magnetometer
 	bus.write_byte_data(address, 0x21, 0x40)
 	bus.write_byte_data(address, 0x20, 0xfc)
-	bus.write_byte_data(address, 0x23, 0x0c)
-	bus.write_byte_data(address, 0x22, 0x00)
+	#bus.write_byte_data(address, 0x23, 0x0c)
+	#bus.write_byte_data(address, 0x22, 0x00)
 
-	def getDirection(self):
+	while True:
+	#def getDirection(self):
 		statusReg=bus.read_byte_data(address, 0x27)
 
 		#magXLow=bus.read_byte_data(address, 0x28)
@@ -37,17 +38,15 @@ class IMU:
 		if direction <0:
 			direction+=360
 
-		if direction>55 and direction <110:
-			return "N"
-		#	print("north", direction)
-		elif direction > 290 and direction < 330:
-			return "SE"
-		#	print("se, leg ab", direction)
-		elif direction >200  and direction <235:
-			return "SW"
-		#	print("sw, leg bc",direction)
-		else: print("no")
+		if direction==0 or direction >314:
+		#	return "N"
+			print("north", direction)
+		elif direction > 230 and direction < 285:
+		#	return "SE"
+			print("se, leg ab", direction)
+		elif direction >165  and direction <210:
+		#	return "SW"
+			print("sw, leg bc",direction)
+		else: print("no", direction)
 
 		time.sleep(.5)
-
-
