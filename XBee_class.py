@@ -15,7 +15,7 @@ class XBee:
          )
 
     def wait_file_sync(self):
-        print('Wait byte...')
+        print('Waiting for X byte...')
 
         receivedByte = False
 
@@ -50,17 +50,10 @@ class XBee:
         self.wait_file_sync()
         self.ser.write(data)
         print("File sent")
-        # sleep(2)
-
-        # iniFileSize = fileSize
-
-        # while fileSize > 0:
-        #     fileSize = self.ser.out_waiting
-        #     self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
 
     def rec_file(self, fileDir, batchNum):
         self.start_file_sync()
-        print('Idle...')
+        print('Waiting for sync...')
 
         fileSize = 0
         receivedBytes = 0
@@ -94,7 +87,7 @@ class XBee:
             elif not rec == b'':
                 receivedBytes += 1
                 fileNameLen = fileNameLen * 256 + int.from_bytes(rec, byteorder="little")
-                print(rec)
+                #print(rec)
             elif rec == b'' and time.time() - beginTime > 5:
                 print("No data found!")
                 return False
@@ -145,7 +138,7 @@ class XBee:
                 received = True
                 self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
                 stream.write(rec)
-        print("Image " + fileName + " received!")
+        print(" Image " + fileName + " received!")
 
         return True
 
