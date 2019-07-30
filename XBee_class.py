@@ -82,6 +82,7 @@ class XBee:
             return False
 
         fileNameLen = 0
+        receivedBytes = 0
 
         self.start_file_sync()
 
@@ -93,6 +94,7 @@ class XBee:
             elif not rec == b'':
                 receivedBytes += 1
                 fileNameLen = fileNameLen * 256 + int.from_bytes(rec, byteorder="little")
+                print(rec)
             elif rec == b'' and time.time() - beginTime > 5:
                 print("No data found!")
                 return False
@@ -102,6 +104,7 @@ class XBee:
             return False
 
         fileName = ""
+        receivedBytes = 0
 
         self.start_file_sync()
 
@@ -112,7 +115,7 @@ class XBee:
                 break
             elif not rec == b'':
                 receivedBytes += 1
-                fileName += rec
+                fileName += rec.decode()
             elif rec == b'' and time.time() - beginTime > 5:
                 print("No data found!")
                 return False
