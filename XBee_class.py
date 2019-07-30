@@ -15,7 +15,7 @@ class XBee:
          )
 
     def wait_file_sync(self):
-        print('Idle...')
+        print('Wait byte...')
 
         receivedByte = False
 
@@ -75,7 +75,7 @@ class XBee:
                 return False
 
         if fileSize == 0:
-            print("No file received! Exiting...")
+            print("0 file size! Exiting...")
             return False
 
         fileNameLen = 0
@@ -95,7 +95,7 @@ class XBee:
                 return False
 
         if fileNameLen == 0:
-            print("No file received! Exiting...")
+            print("0 file name length! Exiting...")
             return False
 
         fileName = ""
@@ -115,7 +115,7 @@ class XBee:
                 return False
 
         if len(fileName) != fileNameLen:
-            print("No file received! Exiting...")
+            print("Invalid file name! Exiting...")
             return False
 
         self.start_file_sync()
