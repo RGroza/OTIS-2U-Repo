@@ -43,7 +43,7 @@ class XBee:
         self.ser.write(fileNameLen.to_bytes(1, byteorder="big", signed=False))
 
         self.wait_file_sync()
-        self.ser.write(fileName)
+        self.ser.write(fileName.encode())
 
         self.wait_file_sync()
         self.ser.write(data)
