@@ -24,6 +24,7 @@ def sendFileBatch(mydir, filesNum, prevType='.png', convType='.jpg', textType='.
 def collectFiles(mydir, archivedir):
         onlyfiles = [f for f in listdir(mydir) if isfile(join(mydir, f))]
         onlyfiles.sort()
+        satellite.start_file_sync()
         for fileName in onlyfiles:
                 if fileName.endswith(".png"):
                         print("Converting image: " + fileName)
