@@ -41,12 +41,15 @@ class XBee:
         fileNameLen = len(fileName)
         self.wait_file_sync()
         self.ser.write(fileNameLen.to_bytes(1, byteorder="big", signed=False))
+        print("fileNameLen")
 
         self.wait_file_sync()
         self.ser.write(fileName.encode())
+        print("fileName")
 
         self.wait_file_sync()
         self.ser.write(data)
+        print("File sent")
         # sleep(2)
 
         # iniFileSize = fileSize
