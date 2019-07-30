@@ -5,5 +5,4 @@ import IMU
 imu = IMU.IMU()
 
 while True:
-   if imu.getDirection() == "N":
-      print("Pointing North!")
+   print(imu.getDirection())

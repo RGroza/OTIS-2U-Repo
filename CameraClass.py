@@ -16,8 +16,8 @@ class CameraClass:
       #camera.resolution = (1024,1024)
       #camera.capture("/home/pi/CubeSats/High" + str(name) + ".png")
       camera.resolution = (128,128)
-      camera.capture("/home/pi/CubeSats/Low" + str(name) + ".png")
-    return "/home/pi/CubeSats/Low" + str(name) + ".png"
+      camera.capture("/home/pi/Documents/OTIS-2U-Repo/images/" + str(name) + ".png")
+    return ("/home/pi/Documents/OTIS-2U-Repo/images/" + str(name) + ".png")
   
   def calTakePic(self, name):
     with picamera.PiCamera() as camera:

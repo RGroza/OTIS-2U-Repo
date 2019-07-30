@@ -4,7 +4,7 @@ import numpy as np
 import os
 from PIL import Image
 
-class ProcessClass:
+class ProcessClass2:
     
     def pic(self, name):
         #image = cv2.imread(name)

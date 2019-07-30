@@ -32,4 +32,3 @@ def send_files():
 
 satellite = XBee('/dev/ttyUSB0', 4800)
 
-send_files()

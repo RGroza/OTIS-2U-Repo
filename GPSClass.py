@@ -32,7 +32,6 @@ class GPSClass:
                         self.longitude = lon_line[0:3] + "." + lon_line[3:5]
                         self.time = context[1]
                         gained = True
-           time.sleep(0.5)
         pi.bb_serial_read_close(RX)
         pi.stop()
 

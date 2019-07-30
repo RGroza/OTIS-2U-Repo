@@ -16,7 +16,7 @@ class ProcessClass:
     while j<72:
       while k<72:
         pix=pixel[j,k]
-        if pix[0]<200 and pix[0]>100 and pix[1]<255 and pix[1]>100 and pix[2]<160 and pix[2]>50:
+        if not (pix[0]<200 and pix[0]>100 and pix[1]<255 and pix[1]>100 and pix[2]<160 and pix[2]>50):
           count+=1
         k+=1
       k=0
