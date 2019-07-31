@@ -9,22 +9,44 @@ from kivy.uix.label import Label
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.floatlayout import FloatLayout
+import time
 
 
 class MyWidget(GridLayout):
     def __init__(self,**kwargs):
         super(MyWidget,self).__init__(**kwargs)
-        self.cols = 2
+        
+        self.cols = 1
         self.inside = GridLayout()
-        self.go = Button(text="GO")
+        self.inside.cols = 2
+        self.inside.add_widget(Label(text="Time: "))
+        self.time = Label(text=" ")
+        self.inside.add_widget(self.time)
+        self.inside.add_widget(Label(text="Position: "))
+        self.posit = Label(text=" ")
+        self.inside.add_widget(self.posit)
+        self.inside.add_widget(Label(text="Battery Percentage: "))
+        self.percent = Label(text=" ")
+        self.inside.add_widget(self.percent)
+        self.inside.add_widget(Label(text="Battery Voltage: "))
+        self.volt = Label(text=" ")
+        self.inside.add_widget(self.volt)
+        self.inside.add_widget(Label(text="Solar Panel 1: "))
+        self.panel1 = Label(text=" ")
+        self.inside.add_widget(self.panel1)
+        self.inside.add_widget(Label(text="Solar Panel 2: "))
+        self.panel2 = Label(text=" ")
+        self.inside.add_widget(self.panel2)
+        self.inside.add_widget(Label(text="Solar Panel 3: "))
+        self.panel3 = Label(text=" ")
+        self.inside.add_widget(self.panel3)
+        self.inside.add_widget(Label(text="Solar Panel 4: "))
+        self.panel4 = Label(text=" ")
+        self.inside.add_widget(self.panel4)
+        self.add_widget(self.inside)
+        self.go = Button(text="Refresh")
         self.go.bind(on_press=self.getGo)
         self.add_widget(self.go)
-        self.add_widget(Label(text="Time: "))
-        self.time = self.getTime()
-        self.add_widget(Label(text=self.time))
-        self.add_widget(Label(text="Position: "))
-        self.posit = self.getPosit()
-        self.add_widget(Label(text=self.posit))
         self.reset = Button(text="Reset")
         self.reset.bind(on_press=self.getReset)
         self.add_widget(self.reset)
@@ -32,18 +54,61 @@ class MyWidget(GridLayout):
         self.image.bind(on_release=self.getImage)
         self.add_widget(self.image)
         
+    
     def getImage(self, instance):
         show_popup()
-    def getTime(self):
-        return " "
-    def getPosit(self):
-        return " "
+    def getBattPercent(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        self.percent = content[67:80]
+    def getPanel1(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        self.panel1=content[96:99]
+    def getPanel2(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        self.panel2=content[96:99]
+    def getPanel3(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        self.panel3=content[96:99]
+    def getPanel4(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        self.panel4=content[96:99]
     def getReset(self, instance):
         print ("test")
     def getGo(self, instance):
-        print ("test")
+        self.getBattPercent()
+        self.getPanel1()
+        self.getPanel2()
+        self.getPanel3()
+        self.getPanel4()
+        
 class P(FloatLayout):
-    pass    
+    def btn1(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        print ("Picture: " + content[8:9])
+        print ("Oxidation %: " + content[16:33])
+    def btn2(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        print ()
+    def btn3(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        print ("")
+    def btn4(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        print ("")
+    def btn5(self):
+        file=open("telemetry0.txt", "r")
+        content=file.readlines()
+        print ("")
+    
 class Otis(App):
     def build(self):
         return MyWidget()
