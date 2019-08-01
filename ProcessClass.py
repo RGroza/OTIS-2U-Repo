@@ -2,7 +2,7 @@
 from PIL import Image
 import os
 
-class ProcessClass:
+class ProcessClass1:
 
   #Checks the middle pixel to see if it is green 
   #If so, it deletes the image and returns False
@@ -78,10 +78,10 @@ class ProcessClass:
     while j<128:
       while k<128:
         pix=pixel[j,k]
-        if not ((pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30) or (pix[0]>120 and pix[1]>120 and pix[2]>120)):
-          if (pix[0]>75 and pix[0]<195 and pix[1]<155 and pix[1]>60 and pix[2]<100 and pix[2]>75):
+        #if not ((pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30) or (pix[0]>120 and pix[1]>120 and pix[2]>120)):
+        if ((pix[0]>75 and pix[0]<195) and (pix[1]<155 and pix[1]>30) and (pix[2]<35)):
             oxi+=1
-          if (pix[0]<90 and pix[1]<95 and pix[2]<165):
+        if (pix[0]<100 and pix[1]<100 and pix[2]<100):
             oil+=1
         k+=1
       k=0
