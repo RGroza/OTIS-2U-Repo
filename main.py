@@ -25,10 +25,10 @@ counter = 0
 inc = 218
 count = 0
 while True: #imu.getDirection() == "N": 
-   telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry.txt", "w")
+   #telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry.txt", "w")
    while True: #imu.getDirection() == "N":
       #Picamera takes an image
-     #telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry.txt", "a")
+      telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry.txt", "a")
       name = camera.takePic(inc)
       #Determines if the image encompasses the pan
       #if process.middlePix(name) and process.midRowPix(name):
@@ -75,7 +75,8 @@ while True: #imu.getDirection() == "N":
       
       inc+=1
    #while imu.getDirection() != "N":
-      #XBee_sat.send_files()
+      telemetry.close()
+      XBee_sat.send_files()
       time.sleep(0.5)
    #Calibration
    #w#hile imu.getDirection()=="SE":

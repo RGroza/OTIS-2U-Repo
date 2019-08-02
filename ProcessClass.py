@@ -2,7 +2,7 @@
 from PIL import Image
 import os
 
-class ProcessClass1:
+class ProcessClass:
 
   #Checks the middle pixel to see if it is green 
   #If so, it deletes the image and returns False
