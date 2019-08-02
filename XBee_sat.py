@@ -31,8 +31,9 @@ def send_files():
         collectFiles('/home/pi/Documents/OTIS-2U-Repo/images/', '/home/pi/Documents/OTIS-2U-Repo/archived/')
         print("Files sent!")
 
-satellite = XBee('/dev/ttyS0', 4800) # '/dev/ttyUSB0', '/dev/ttyS0' or '/dev/ttyAMA0'
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(7, GPIO.OUT, inital=0)
+
+satellite = XBee('/dev/ttyS0', 4800) # '/dev/ttyUSB0', '/dev/ttyS0' or '/dev/ttyAMA0'
+
 send_files()
