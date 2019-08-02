@@ -10,6 +10,6 @@ def receiveFiles(mydir, fileType='.jpg'):
         while fileStatus:
             fileStatus = ground_station.rec_file(mydir, batchNum)
 
-ground_station = XBee('COM9', 115200)
+ground_station = XBee('COM9', 9600)
 
 receiveFiles('C:/Work/BWSI/CubeSats/sat_images/')
