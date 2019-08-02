@@ -32,7 +32,7 @@ def send_files():
         print("Files sent!")
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(7, GPIO.OUT, inital=0)
+GPIO.setup(7, GPIO.OUT, initial=0)
 
 satellite = XBee('/dev/ttyS0', 4800) # '/dev/ttyUSB0', '/dev/ttyS0' or '/dev/ttyAMA0'
 
