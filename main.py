@@ -24,10 +24,10 @@ lastValue = GPIO.input(5)
 counter = 0
 inc = 0
 count = 0
-temp = 0
+increment = 0
 while True: #imu.getDirection() == "N": 
-   telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry" + str(temp) + ".txt", "a")
-   while count <= 10: #imu.getDirection() == "N":
+   telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry" + str(increment) + ".txt", "a")
+   while count <= 30: #imu.getDirection() == "N":
       #Picamera takes an image
       #telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry" + str(count) + ".txt", "a")
       name = camera.takePic(inc)
@@ -78,6 +78,8 @@ while True: #imu.getDirection() == "N":
       time.sleep(0.5)
    telemetry.close()
    XBee_sat.send_files()
+   increment += 1
+   count = 0
    #while imu.getDirection() != "N":
    time.sleep(1)
       #telemetry.close()
