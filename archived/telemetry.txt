@@ -1,3 +1,2 @@
-Oxidation Rate: 0.0Picture 218 taken!0.0Temperature: 42.4'C
-Battery charge: -46129.135888solar voltage: 0.0solar voltage: 1.134392309452964solar voltage: 2.043195239185168solar voltage: 2.0045227740901805Oxidation Rate: 0.0Picture 218 taken!0.0Temperature: 42.9'C
-Battery charge: -46129.135888solar voltage: 0.0solar voltage: 1.2052918287937744solar voltage: 2.1269855802243076solar voltage: 1.9787411306935223
+Oxidation Rate: 0.0Picture 2 taken!0.0Temperature: 41.9'C
+Battery charge: -46129.135888solar voltage: 0.0solar voltage: 1.4888899061570153solar voltage: 0.5994232089723048solar voltage: 1.2439642938887616

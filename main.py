@@ -22,7 +22,7 @@ GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 #used for deboduncing the GPIO input
 lastValue = GPIO.input(5)
 counter = 0
-inc = 218
+inc = 0
 count = 0
 while True: #imu.getDirection() == "N": 
    #telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry.txt", "w")
