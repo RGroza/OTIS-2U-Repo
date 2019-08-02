@@ -1,10 +1,9 @@
-#Takes pic and processes it
 from PIL import Image
 import os
 
 class ProcessClass:
 
-  #Checks the middle pixel to see if it is green 
+  #Checks the middle pixel to see if it is green
   #If so, it deletes the image and returns False
   #else returns True
   def middlePix(self, name):
@@ -26,7 +25,7 @@ class ProcessClass:
       return False
     else:
       return True
-  
+
   #checks the middle row of pixels
   #should be called after the middlePix method
   #returns true or false
@@ -64,7 +63,7 @@ class ProcessClass:
       return False
     print ("hi3")
     return True
-  
+
   #runs through and spices the pixels
   #returns a list containing:
   #oxi to all pix, oil to all pix, oxi to oil, oxi to all oil, oil to all oil
@@ -81,28 +80,34 @@ class ProcessClass:
         #if not ((pix[0]<50 and pix[0]>25 and pix[1]<80 and pix[1]>25 and pix[2]<30) or (pix[0]>120 and pix[1]>120 and pix[2]>120)):
         if ((pix[0]>75 and pix[0]<195) and (pix[1]<155 and pix[1]>30) and (pix[2]<35)):
             oxi+=1
-        if (pix[0]<100 and pix[1]<100 and pix[2]<100):
+        elif ((pix[0]<100) and (pix[1]<100) and (pix[2]<100)):
             oil+=1
         k+=1
       k=0
       j+=1
     return self.calculate(oxi,oil)
-  
+
   #embeded method used in picIdentify
   def calculate(self,ox,oi):
-    perAllOxi=float(ox)/1048576
-    perAllOil=float(oi)/1048576
     oxiOil=ox+oi
     if oxiOil==0:
       return 0.0
     perOxi=float(ox)/oxiOil
     perOil=float(oi)/oxiOil
     holder=perOxi*100
-    return holder
-  
-  def determineEffectiveness(self, holder):
-    if holder <= 45:
-      return True
+    return self.determineEffectiveness(ox, oi, holder)
+
+  def determineEffectiveness(self,ox,oi,holder):
+    answer = ""
+    if holder == 0.0:
+        answer += "Clean Oil, " + str(holder)
+    elif holder > 45:
+        answer += ">45%\ oxidized oil with " + str(holder)
     else:
-      return False
-  
+        answer += ">=55%\ fresh oil with " + str(holder)
+    perAllOil = float(oi)/16384
+    perAllOxi = float(ox)/16384
+    dispersantNeeded = perAllOil * (1-perAllOxi)
+    answer += "Area of pan to be covered in dispersant: " + str(dispersantNeeded)
+    answer += " fOil: " + str(perAllOil) + " fOxi: " + str(perAllOxi)
+    return answer
