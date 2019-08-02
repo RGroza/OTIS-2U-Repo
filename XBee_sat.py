@@ -4,6 +4,7 @@ from time import sleep
 import os
 from os import listdir
 from os.path import isfile, join
+import RPi.GPIO as GPIO
 
 def convert_to_jpg(file): # filepath as string
     im = Image.open(file)
@@ -32,4 +33,6 @@ def send_files():
 
 satellite = XBee('/dev/ttyS0', 4800) # '/dev/ttyUSB0', '/dev/ttyS0' or '/dev/ttyAMA0'
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(7, GPIO.OUT, inital=0)
 send_files()
