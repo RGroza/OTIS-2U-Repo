@@ -31,6 +31,7 @@ def send_files():
         collectFiles('/home/pi/Documents/OTIS-2U-Repo/images/', '/home/pi/Documents/OTIS-2U-Repo/archived/')
         print("Files sent!")
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
 
