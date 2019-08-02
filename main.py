@@ -27,7 +27,7 @@ count = 0
 temp = 0
 while True: #imu.getDirection() == "N": 
    telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry" + str(temp) + ".txt", "a")
-   while count <= 20: #imu.getDirection() == "N":
+   while count <= 10: #imu.getDirection() == "N":
       #Picamera takes an image
       #telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry" + str(count) + ".txt", "a")
       name = camera.takePic(inc)
