@@ -35,6 +35,6 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(7, GPIO.OUT, initial=GPIO.LOW)
 
-satellite = XBee('/dev/ttyS0', 9600) # '/dev/ttyUSB0', '/dev/ttyS0' or '/dev/ttyAMA0'
+satellite = XBee('/dev/ttyS0', 115200) # '/dev/ttyUSB0', '/dev/ttyS0' or '/dev/ttyAMA0'
 
 #send_files()
