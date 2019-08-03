@@ -18,7 +18,7 @@ class XBee:
         print('Waiting for X byte...')
 
         receivedByte = False
-
+        
         beginTime = time.time()
         while True and time.time() - beginTime <= 5:
             rec = self.ser.read()
@@ -52,7 +52,7 @@ class XBee:
         self.ser.write(data)
         print("File sent")
 
-    def rec_file(self, fileDir, batchNum):
+    def rec_file(self, fileDir): # , batchNum):
         self.start_file_sync()
         print('Waiting for sync...')
 
@@ -120,7 +120,7 @@ class XBee:
 
         self.start_file_sync()
 
-        stream = open(fileDir + str(batchNum) + "-" + fileName, 'wb')
+        stream = open(fileDir + fileName, 'wb')
         received = False
 
         print("Reading file... (" + fileName + ") " + str(fileSize) + " bytes")

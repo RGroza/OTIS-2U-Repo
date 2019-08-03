@@ -8,7 +8,7 @@ def receiveFiles(mydir, fileType='.jpg'):
         ground_station.wait_file_sync()
         fileStatus = True
         while fileStatus:
-            fileStatus = ground_station.rec_file(mydir, batchNum)
+            fileStatus = ground_station.rec_file(mydir)
 
 ground_station = XBee('COM9', 9600)
 
