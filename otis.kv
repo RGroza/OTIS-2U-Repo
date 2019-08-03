@@ -1,26 +1,59 @@
 <P>:
     Button:
         text: "Image 1"
-        size_hint: 0.6,0.2
-        pos_hint:{"x":.2,"top":1}
+        size_hint: 0.4,0.2
+        pos_hint:{"x":0,"top":1}
         on_release: root.btn1('C:/Work/BWSI/CubeSats/sat_images/')
     Button:
         text: "Image 2"
-        size_hint: 0.6,0.2
-        pos_hint:{"x":.2,"top":.8}
+        size_hint: 0.4,0.2
+        pos_hint:{"x":0,"top":.8}
         on_release: root.btn2('C:/Work/BWSI/CubeSats/sat_images/')
     Button:
         text: "Image 3"
-        size_hint: 0.6,0.2
-        pos_hint:{"x":.2,"top":.6}
+        size_hint: 0.4,0.2
+        pos_hint:{"x":0,"top":.6}
         on_release: root.btn3('C:/Work/BWSI/CubeSats/sat_images/')
     Button:
         text: "Image 4"
-        size_hint: 0.6,0.2
-        pos_hint:{"x":.2,"top":.4}
+        size_hint: 0.4,0.2
+        pos_hint:{"x":0,"top":.4}
         on_release: root.btn4('C:/Work/BWSI/CubeSats/sat_images/')
     Button:
         text: "Image 5"
-        size_hint: 0.6,0.2
-        pos_hint:{"x":.2,"top":.2}
+        size_hint: 0.4,0.2
+        pos_hint:{"x":0,"top":.2}
         on_release: root.btn5('C:/Work/BWSI/CubeSats/sat_images/')
+    Label:
+        id: lab1
+        text: " "
+        size_hint: 0.4,0.2
+        pos_hint:{"x":.5,"top":1}
+    Label:
+        id: lab2
+        text: " "
+        size_hint: 0.4,0.2
+        pos_hint:{"x":.5,"top":.8}
+    Label:
+        id: lab3
+        text: " "
+        size_hint: 0.4,0.2
+        pos_hint:{"x":.5,"top":.6}
+    Label:
+        id: lab4
+        text: " "
+        size_hint: 0.4,0.2
+        pos_hint:{"x":.5,"top":.4}
+    Label:
+        id: lab5
+        text: " "
+        size_hint: 0.4,0.2
+        pos_hint:{"x":.5,"top":.2}
+    #Image:
+        #id: im1
+        #size: self.texture_size
+        #pos_hint:{"x":.8,"top":1}
+    #Image:
+        #id: im3
+        #size: self.texture_size
+        #pos_hint:{"x":.8,"top":.6}
