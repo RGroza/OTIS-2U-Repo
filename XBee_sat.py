@@ -11,6 +11,15 @@ def convert_to_jpg(file): # filepath as string
     jpg_im = im.convert('RGB')
     jpg_im.save(file[0:file.index('.')] + '.jpg', quality=70)
 
+# def sortList(fileList):
+#         newFileList = []
+#         firstName = fileList[0]
+#         fileType = firstName[index("."):]
+#         smallestVal = firstName[:index(".")]
+#         for fileName in fileList:
+#                 nextVal = fileName[:index(".")]
+#                 if nextVal < smallestVal:
+
 def collectFiles(mydir, archivedir):
         onlyfiles = [f for f in listdir(mydir) if isfile(join(mydir, f))]
         onlyfiles.sort()
