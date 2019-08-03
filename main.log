@@ -1,0 +1,9 @@
+Files sent!
+Traceback (most recent call last):
+  File "/home/pi/Documents/OTIS-2U-Repo/main.py", line 34, in <module>
+    name = camera.takePic(inc)
+  File "/home/pi/Documents/OTIS-2U-Repo/CameraClass.py", line 15, in takePic
+    camera.awb_gains = g
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 3055, in _set_awb_gains
+    red_gain, blue_gain))
+picamera.exc.PiCameraValueError: Invalid gain(s) in (172.429688, 189.394531) (valid range: 0.0-8.0)
