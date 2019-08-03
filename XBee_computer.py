@@ -5,7 +5,7 @@ def receiveFiles(mydir, fileType='.jpg'):
     while True:
         batchNum += 1
         print("Waiting for satellite sync...")
-        ground_station.wait_file_sync(True)
+        ground_station.wait_file_sync()
         fileStatus = True
         while fileStatus:
             fileStatus = ground_station.rec_file(mydir) #, batchNum)
