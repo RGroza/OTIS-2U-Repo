@@ -19,7 +19,8 @@ class XBee:
 
         receivedByte = False
 
-        while True:
+        beginTime = time.time()
+        while True and time.time() - beginTime <= 5:
             rec = self.ser.read()
             if receivedByte == True:
                 break
