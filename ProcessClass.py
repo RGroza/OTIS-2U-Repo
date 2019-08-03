@@ -95,7 +95,7 @@ class ProcessClass:
     perOxi=float(ox)/oxiOil
     perOil=float(oi)/oxiOil
     holder=perOxi*100
-    return self.determineEffectiveness(ox, oi, holder)
+    return holder
 
   def determineEffectiveness(self,ox,oi,holder):
     answer = ""
