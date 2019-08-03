@@ -14,10 +14,10 @@ def convert_to_jpg(file): # filepath as string
 # def sortList(fileList):
 #         newFileList = []
 #         firstName = fileList[0]
-#         fileType = firstName[index("."):]
-#         smallestVal = firstName[:index(".")]
+#         fileType = firstName[firstName.index("."):]
+#         smallestVal = firstName[:firstName.index(".")]
 #         for fileName in fileList:
-#                 nextVal = fileName[:index(".")]
+#                 nextVal = fileName[:fileName.index(".")]
 #                 if nextVal < smallestVal:
 
 def collectFiles(mydir, archivedir):

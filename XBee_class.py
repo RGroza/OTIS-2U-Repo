@@ -21,15 +21,24 @@ class XBee:
 
         if timeout:
             beginTime = time.time()
-        while True or (timeout and time.time() - beginTime <= 5):
-            rec = self.ser.read()
-            if receivedByte == True:
-                break
-            elif not rec == b'':
-                receivedByte = True
+            while time.time() - beginTime <= 5):
+                rec = self.ser.read()
+                if receivedByte == True:
+                    return
+                elif not rec == b'':
+                    receivedByte = True
+            self.start_file_sync()
+        else:
+            while True:
+                rec = self.ser.read()
+                if receivedByte == True:
+                    return
+                elif not rec == b'':
+                    receivedByte = True
 
     def start_file_sync(self):
         self.ser.write(b'x')
+        print("X byte sent!")
 
     def send_file(self, fileDir, fileName):
         stream = open(fileDir + fileName, 'rb')
@@ -55,7 +64,7 @@ class XBee:
 
     def rec_file(self, fileDir): #, batchNum):
         self.start_file_sync()
-        print('Waiting for sync...')
+        print('Starting receiving procedure...')
 
         fileSize = 0
         receivedBytes = 0
@@ -69,7 +78,7 @@ class XBee:
                 receivedBytes += 1
                 fileSize = fileSize * 256 + int.from_bytes(rec, byteorder="little")
             elif rec == b'' and time.time() - beginTime > 5:
-                print("No data found!")
+                print("No data found! (fileSize)")
                 return False
 
         if fileSize == 0:
@@ -91,7 +100,7 @@ class XBee:
                 fileNameLen = fileNameLen * 256 + int.from_bytes(rec, byteorder="little")
                 # print(rec)
             elif rec == b'' and time.time() - beginTime > 5:
-                print("No data found!")
+                print("No data found! (fileNameLen)")
                 return False
 
         if fileNameLen == 0:
@@ -112,7 +121,7 @@ class XBee:
                 receivedBytes += 1
                 fileName += rec.decode()
             elif rec == b'' and time.time() - beginTime > 5:
-                print("No data found!")
+                print("No data found! (fileName)")
                 return False
 
         if len(fileName) != fileNameLen:
