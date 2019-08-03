@@ -26,7 +26,7 @@ inc = 0
 count = 0
 increment = 1
 roberto = 0
-while True: #imu.getDirection() == "N": 
+while True: #imu.getDirection() == "N":
    telemetry = open("/home/pi/Documents/OTIS-2U-Repo/images/telemetry.txt", "w")
    while count <= 5 and roberto <= 3: #imu.getDirection() == "N":
       #Picamera takes an image
@@ -38,7 +38,7 @@ while True: #imu.getDirection() == "N":
                #Grabs the GPS telemetry data
                #GPS.getGPS()
                #Prints out oxidation rate
-      telemetry.write("Oxidation Rate: " + str(list))
+      telemetry.write(str(list))
                #Returns if dispersants would be effective
                #print process.determineEffectiveness(list)
                #Sends image to ground station
@@ -54,29 +54,36 @@ while True: #imu.getDirection() == "N":
       sol_voltage_2 = "solar voltage: " + str(power.getPanelXMinusV())
       sol_voltage_3 = "solar voltage: " + str(power.getPanelYPlusV())
       sol_voltage_4 = "solar voltage: " + str(power.getPanelYMinusV())
-      telemetry.write(confirm)
-      telemetry.write(str(list))
-      telemetry.write(temp)
+      telemetry.write(inc)
+      #telemetry.write(str(list))
+      #telemetry.write(temp)
                #telemetry.write(lat)
                #telemetry.write(lon)
                #telemetry.write(GPS_time)
-      telemetry.write(batt_charge)
-      telemetry.write(sol_voltage_1)
-      telemetry.write(sol_voltage_2)
-      telemetry.write(sol_voltage_3)
-      telemetry.write(sol_voltage_4)
+     # telemetry.write(batt_charge)
+      #telemetry.write(sol_voltage_1)
+      #telemetry.write(sol_voltage_2)
+      #telemetry.write(sol_voltage_3)
+      #telemetry.write(sol_voltage_4)
       if GPIO.input(5) is not lastValue:
           lastValue = GPIO.input(5)
           counter+=1
                   #prints out the amount of distance OTIS has travelled by calculating the circumference of the rotations
           distance = "Distance travelled: " + str((counter * (0.055 * math.pi)))
-          telemetry.write(str(distance))
+          #telemetry.write(str(distance))
                #telemetry.readlines()
       count += 1
       #Deliveers telemetry data
-      
+
       inc+=1
       time.sleep(0.5)
+   telemetry.write(batt_charge)
+   telemetry.write(temp)
+   telemetry.write(sol_voltage_1)
+   telemetry.write(sol_voltage_2)
+   telemetry.write(sol_voltage_3)
+   telemetry.write(sol_voltage_4)
+   telemetry.write(distance)
    telemetry.close()
    XBee_sat.send_files()
    increment += 1
@@ -94,5 +101,3 @@ while True: #imu.getDirection() == "N":
         #    cal.calGreen()
          #   cal.calOrange()
           #  cal.calBlack()
-            
-            
