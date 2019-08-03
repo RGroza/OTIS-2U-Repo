@@ -78,7 +78,7 @@ while True: #imu.getDirection() == "N":
       inc+=1
       time.sleep(0.5)
    telemetry.write(str(batt_charge) + "\n")
-   telemetry.write(str(temp) + "\n")
+   telemetry.write(str(temp))
    telemetry.write(str(sol_voltage_1) + "\n")
    telemetry.write(str(sol_voltage_2) + "\n")
    telemetry.write(str(sol_voltage_3) + "\n")
