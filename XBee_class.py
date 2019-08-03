@@ -63,6 +63,7 @@ class XBee:
         print("File sent")
 
     def rec_file(self, fileDir): #, batchNum):
+        self.wait_file_sync()
         self.start_file_sync()
         print('Starting receiving procedure...')
 
