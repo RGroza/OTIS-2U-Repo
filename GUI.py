@@ -10,6 +10,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.floatlayout import FloatLayout
 import time
+from PIL import Image
 
 
 class MyWidget(GridLayout):
@@ -20,15 +21,15 @@ class MyWidget(GridLayout):
         self.inside = GridLayout()
         self.inside.cols = 2
         self.inside.add_widget(Label(text="Time: "))
-        self.time = Label(text=" ")
+        self.time = Label(text="14:35")
         self.inside.add_widget(self.time)
         self.inside.add_widget(Label(text="Position: "))
-        self.posit = Label(text=" ")
+        self.posit = Label(text="N")
         self.inside.add_widget(self.posit)
-        self.inside.add_widget(Label(text="Battery Percentage: "))
+        self.inside.add_widget(Label(text="Battery Charge: "))
         self.percent = Label(text=" ")
         self.inside.add_widget(self.percent)
-        self.inside.add_widget(Label(text="Battery Voltage: "))
+        self.inside.add_widget(Label(text="CubeSat Temperature: "))
         self.volt = Label(text=" ")
         self.inside.add_widget(self.volt)
         self.inside.add_widget(Label(text="Solar Panel 1: "))
@@ -58,28 +59,39 @@ class MyWidget(GridLayout):
     def getImage(self, instance):
         show_popup()
     def getBattPercent(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.percent = content[67:80]
+        self.percent.text = content[10]
+        file.close()
+    def getTemp(self):
+        file=open("telemetry.txt", "r")
+        content=file.readlines()
+        self.volt.text = content[11]
+        file.close()
     def getPanel1(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel1=content[96:99]
+        self.panel1.text=content[12]
+        file.close()
     def getPanel2(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel2=content[96:99]
+        self.panel2.text=content[13]
+        file.close()
     def getPanel3(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel3=content[96:99]
+        self.panel3.text=content[14]
+        file.close()
     def getPanel4(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel4=content[96:99]
+        self.panel4.text=content[15]
+        file.close()
     def getReset(self, instance):
         print ("test")
     def getGo(self, instance):
+        self.getTemp()
         self.getBattPercent()
         self.getPanel1()
         self.getPanel2()
@@ -88,26 +100,33 @@ class MyWidget(GridLayout):
         
 class P(FloatLayout):
     def btn1(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        print ("Picture: " + content[8:9])
-        print ("Oxidation %: " + content[16:33])
+        self.ids.lab1.text = ("Picture: " + content[1] + "Oxidation %: " + content[0])
+        #image1 = Image.open(content[1] + ".png")
+        #self.ids.im1.source = image1
+        file.close()
     def btn2(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        print ()
+        self.ids.lab2.text = ("Picture: " + content[3] + "Oxidation %: " + content[2])
+        file.close()
     def btn3(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        print ("")
+        self.ids.lab3.text = ("Picture: " + content[5] + "Oxidation %: " + content[4])
+        #self.ids.im3.source = (str(content[5]) + ".png")
+        file.close()
     def btn4(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        print ("")
+        self.ids.lab4.text = ("Picture: " + content[7] + "Oxidation %: " + content[6])
+        file.close()
     def btn5(self):
-        file=open("telemetry0.txt", "r")
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        print ("")
+        self.ids.lab5.text = ("Picture: " + content[9] + "Oxidation %: " + content[8])
+        file.close()
     
 class Otis(App):
     def build(self):
@@ -115,7 +134,7 @@ class Otis(App):
 
 def show_popup():
     show = P()
-    popupWindow = Popup(title="OTIS", content=show, size_hint=(None,None), size=(400,400))
+    popupWindow = Popup(title="OTIS", content=show, size_hint=(None,None), size=(600,400))
     popupWindow.open()
 
 if __name__ == "__main__":
