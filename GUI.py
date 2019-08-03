@@ -54,8 +54,7 @@ class MyWidget(GridLayout):
         self.image = Button(text="Images")
         self.image.bind(on_release=self.getImage)
         self.add_widget(self.image)
-        
-    
+
     def getImage(self, instance):
         show_popup()
     def getBattPercent(self, mydir):
