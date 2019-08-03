@@ -14,13 +14,14 @@ class XBee:
             timeout=1
          )
 
-    def wait_file_sync(self):
+    def wait_file_sync(self, timeout=False):
         print('Waiting for X byte...')
 
         receivedByte = False
 
-        #beginTime = time.time()
-        while True: #and time.time() - beginTime <= 5:
+        if timeout:
+            beginTime = time.time()
+        while True or (timeout and time.time() - beginTime <= 5):
             rec = self.ser.read()
             if receivedByte == True:
                 break
@@ -52,7 +53,7 @@ class XBee:
         self.ser.write(data)
         print("File sent")
 
-    def rec_file(self, fileDir): # , batchNum):
+    def rec_file(self, fileDir): #, batchNum):
         self.start_file_sync()
         print('Waiting for sync...')
 
@@ -88,7 +89,7 @@ class XBee:
             elif not rec == b'':
                 receivedBytes += 1
                 fileNameLen = fileNameLen * 256 + int.from_bytes(rec, byteorder="little")
-                #print(rec)
+                # print(rec)
             elif rec == b'' and time.time() - beginTime > 5:
                 print("No data found!")
                 return False

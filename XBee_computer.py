@@ -5,10 +5,10 @@ def receiveFiles(mydir, fileType='.jpg'):
     while True:
         batchNum += 1
         print("Waiting for satellite sync...")
-        ground_station.wait_file_sync()
+        ground_station.wait_file_sync(True)
         fileStatus = True
         while fileStatus:
-            fileStatus = ground_station.rec_file(mydir)
+            fileStatus = ground_station.rec_file(mydir) #, batchNum)
 
 ground_station = XBee('COM9', 9600)
 
