@@ -21,7 +21,7 @@ class XBee:
 
         if timeout:
             beginTime = time.time()
-            while time.time() - beginTime <= 5):
+            while time.time() - beginTime <= 5:
                 rec = self.ser.read()
                 if receivedByte == True:
                     return
