@@ -18,9 +18,9 @@ class XBee:
         print('Waiting for X byte...')
 
         receivedByte = False
-        
-        beginTime = time.time()
-        while True and time.time() - beginTime <= 5:
+
+        #beginTime = time.time()
+        while True: #and time.time() - beginTime <= 5:
             rec = self.ser.read()
             if receivedByte == True:
                 break
