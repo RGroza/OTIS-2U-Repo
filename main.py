@@ -77,7 +77,7 @@ while True: #imu.getDirection() == "N":
       #Deliveers telemetry data
 
       inc+=1
-      time.sleep(0.25)
+      time.sleep(0.35)
    telemetry.write(str(batt_charge) + "\n")
    telemetry.write(str(temp))
    telemetry.write(str(sol_voltage_1) + "\n")
