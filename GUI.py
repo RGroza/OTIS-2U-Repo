@@ -54,78 +54,85 @@ class MyWidget(GridLayout):
         self.image = Button(text="Images")
         self.image.bind(on_release=self.getImage)
         self.add_widget(self.image)
-
+        
+    
     def getImage(self, instance):
         show_popup()
-    def getBattPercent(self, mydir):
-        file=open(str(mydir) + "telemetry.txt", "r")
+    def getBattPercent(self):
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.percent.text = content[10]
+        self.percent.text = content[21]
         file.close()
-    def getTemp(self, mydir):
-        file=open(str(mydir) + "telemetry.txt", "r")
+    def getTemp(self):
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.volt.text = content[11]
+        self.volt.text = content[22]
         file.close()
-    def getPanel1(self, mydir):
-        file=open(str(mydir) + "telemetry.txt", "r")
+    def getPanel1(self):
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel1.text=content[12]
+        self.panel1.text=content[23]
         file.close()
-    def getPanel2(self, mydir):
-        file=open(str(mydir) + "telemetry.txt", "r")
+    def getPanel2(self):
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel2.text=content[13]
+        self.panel2.text=content[24]
         file.close()
-    def getPanel3(self, mydir):
-        file=open(str(mydir) + "telemetry.txt", "r")
+    def getPanel3(self):
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel3.text=content[14]
+        self.panel3.text=content[25]
         file.close()
-    def getPanel4(self, mydir):
-        file=open(str(mydir) + "telemetry.txt", "r")
+    def getPanel4(self):
+        file=open("telemetry.txt", "r")
         content=file.readlines()
-        self.panel4.text=content[15]
+        self.panel4.text=content[26]
         file.close()
     def getReset(self, instance):
         print ("test")
     def getGo(self, instance):
-        mydir = 'C:/Work/BWSI/CubeSats/sat_images/'
-        self.getTemp(mydir)
-        self.getBattPercent(mydir)
-        self.getPanel1(mydir)
-        self.getPanel2(mydir)
-        self.getPanel3(mydir)
-        self.getPanel4(mydir)
+        self.getTemp()
+        self.getBattPercent()
+        self.getPanel1()
+        self.getPanel2()
+        self.getPanel3()
+        self.getPanel4()
         
 class P(FloatLayout):
     def btn1(self, mydir):
         file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
-        self.ids.lab1.text = ("Picture: " + content[1] + "Oxidation %: " + content[0])
-        #image1 = Image.open(content[1] + ".png")
-        #self.ids.im1.source = image1
+        self.ids.lab1.text = ("Picture: " + content[2] + "Oxidation %: " + content[0] + "Distance: " + content[1])
         file.close()
     def btn2(self, mydir):
         file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
-        self.ids.lab2.text = ("Picture: " + content[3] + "Oxidation %: " + content[2])
+        self.ids.lab2.text = ("Picture: " + content[5] + "Oxidation %: " + content[3] + "Distance: " + content[4])
         file.close()
     def btn3(self, mydir):
         file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
-        self.ids.lab3.text = ("Picture: " + content[5] + "Oxidation %: " + content[4])
-        #self.ids.im3.source = (str(content[5]) + ".png")
+        self.ids.lab3.text = ("Picture: " + content[8] + "Oxidation %: " + content[6] + "Distance: " + content[7])
         file.close()
     def btn4(self, mydir):
         file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
-        self.ids.lab4.text = ("Picture: " + content[7] + "Oxidation %: " + content[6])
+        self.ids.lab4.text = ("Picture: " + content[11] + "Oxidation %: " + content[9] + "Distance: " + content[10])
         file.close()
     def btn5(self, mydir):
         file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
-        self.ids.lab5.text = ("Picture: " + content[9] + "Oxidation %: " + content[8])
+        self.ids.lab5.text = ("Picture: " + content[14] + "Oxidation %: " + content[12] + "Distance: " + content[13])
+        file.close()
+    def btn6(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
+        content=file.readlines()
+        self.ids.lab6.text = ("Picture: " + content[17] + "Oxidation %: " + content[15] + "Distance: " + content[16])
+        file.close()
+    def btn7(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
+        content=file.readlines()
+        self.ids.lab7.text = ("Picture: " + content[20] + "Oxidation %: " + content[18] + "Distance: " + content[19])
         file.close()
     
 class Otis(App):
@@ -134,7 +141,7 @@ class Otis(App):
 
 def show_popup():
     show = P()
-    popupWindow = Popup(title="OTIS", content=show, size_hint=(None,None), size=(600,400))
+    popupWindow = Popup(title="OTIS", content=show, size_hint=(None,None), size=(600,600))
     popupWindow.open()
 
 if __name__ == "__main__":
