@@ -139,17 +139,31 @@ class XBee:
 
         self.start_file_sync()
         
+        rec_complete = True
         while fileSize > 0:
             rec = self.ser.read()
             if rec == b'' and received == True:
-                print(" Oops!")
-                break
+                recovered = False
+                beginTime = time.time()
+                while time.time() - beginTime <= 5: # recover downlink if connection is lost
+                    if not rec == b'':
+                        fileSize -= 1
+                        received = True
+                        self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
+                        stream.write(rec)
+                        recovered = True
+                        rec_complete = False
+                        break
+                if not recovered:
+                    print(" Oops!")
+                    break
             elif not rec == b'':
                 fileSize -= 1
                 received = True
                 self.update_progress(int(((iniFileSize - fileSize) / iniFileSize) * 100))
                 stream.write(rec)
-        print(" Image " + fileName + " received!")
+        if rec_complete:
+            print(" Image " + fileName + " received!")
 
         return True
 
