@@ -58,45 +58,45 @@ class MyWidget(GridLayout):
     
     def getImage(self, instance):
         show_popup()
-    def getBattPercent(self):
-        file=open("telemetry.txt", "r")
+    def getBattPercent(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
         self.percent.text = content[21]
         file.close()
-    def getTemp(self):
-        file=open("telemetry.txt", "r")
+    def getTemp(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
         self.volt.text = content[22]
         file.close()
-    def getPanel1(self):
-        file=open("telemetry.txt", "r")
+    def getPanel1(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
         self.panel1.text=content[23]
         file.close()
-    def getPanel2(self):
-        file=open("telemetry.txt", "r")
+    def getPanel2(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
         self.panel2.text=content[24]
         file.close()
-    def getPanel3(self):
-        file=open("telemetry.txt", "r")
+    def getPanel3(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
         self.panel3.text=content[25]
         file.close()
-    def getPanel4(self):
-        file=open("telemetry.txt", "r")
+    def getPanel4(self, mydir):
+        file=open(str(mydir) + "telemetry.txt", "r")
         content=file.readlines()
         self.panel4.text=content[26]
         file.close()
     def getReset(self, instance):
         print ("test")
     def getGo(self, instance):
-        self.getTemp()
-        self.getBattPercent()
-        self.getPanel1()
-        self.getPanel2()
-        self.getPanel3()
-        self.getPanel4()
+        self.getTemp('C:/Work/BWSI/CubeSats/sat_images/')
+        self.getBattPercent('C:/Work/BWSI/CubeSats/sat_images/')
+        self.getPanel1('C:/Work/BWSI/CubeSats/sat_images/')
+        self.getPanel2('C:/Work/BWSI/CubeSats/sat_images/')
+        self.getPanel3('C:/Work/BWSI/CubeSats/sat_images/')
+        self.getPanel4('C:/Work/BWSI/CubeSats/sat_images/')
         
 class P(FloatLayout):
     def btn1(self, mydir):
